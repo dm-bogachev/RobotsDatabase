@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # 3rd Party
     'crispy_forms',
+    'nested_inline',
 ]
 
 MIDDLEWARE = [
