@@ -120,9 +120,11 @@ USE_L10N = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = (os.path.join('static'),)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIAFILES_DIRS = (os.path.join('media'),)
 
 AUTH_USER_MODEL = 'users.RobowizardEmployee'
 
@@ -134,3 +136,4 @@ DATE_FORMAT = "d.m.Y"
 TIME_ZONE = 'Europe/Moscow'
 DATE_INPUT_FORMATS = ('%d.%m.%Y',)
 USE_TZ = True
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
