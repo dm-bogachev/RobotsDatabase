@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Изменить робота{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1 class="pt-2">Изменить робота</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" type="submit">Изменить</button>
+        </form>
+    </div>
+    <script>
+        $('#id_shipping_date').datetimepicker({
+            format:'d.m.Y',
+            timepicker: false,
+            });
+    </script>
+{% endblock content %}

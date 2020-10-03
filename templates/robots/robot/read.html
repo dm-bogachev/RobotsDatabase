@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Robot list{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid">
+        <table class="button-forms">
+            <tr>
+                <td>
+                    <form class="pt-1" action="{% url 'home' %}" target="_self">
+                        <button style="font-size: large;" class="btn btn btn-primary">Назад</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="pt-1" action="{% url 'robot_update' robot.pk %}" target="_self">
+                        <button style="font-size: large;" class="btn btn btn-success">Изменить</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="pt-1" action="{% url 'robot_delete' robot.pk %}" target="_self">
+                        <button style="font-size: large;" class="btn btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <h1 class="pt-1">Информация о роботе:</h1>
+        <table class="table" style="font-size: large;">
+            <thead class="thead-default">
+            <tr>
+                <th>Имя</th>
+                <th>Серийный номер</th>
+                <th>Модель</th>
+                <th>Клиент</th>
+                <th>Контроллер</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th><a href="{% url 'robot_read' robot.pk %}">{{ object.name }}</a></th>
+                <th>{{ object.serial_number }}</th>
+                <th>{{ object.model_id }}</th>
+                <th>{{ object.client_id }}</th>
+                <th>{{ object.controller_id }}</th>
+            </tr>
+            </tbody>
+        </table>
+        <h1>Обслуживания: <a style="font-size: 18pt;" href="#">Добавить</a></h1>
+        {% for service in object.service_set.all %}
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 class="display-4">{{ service.date }}</h1>
+                    <p class="lead">Описание: {{ service.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        {#        <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=object.pk %}">Добавить</a></h1>#}
+        {#        {% for service in object.service_set.all %}#}
+        {#            <div class="jumbotron jumbotron-fluid">#}
+        {#                <div class="container">#}
+        {#                    <h1 class="display-4">{{ service.date }}</h1>#}
+        {#                    <p class="lead">Описание: {{ service.description }}</p>#}
+        {#                    <br>#}
+        {#                    <p class="lead"><a href="{% url 'service_detail' service.pk %}">Информация</a> | <a#}
+        {#                            href="{% url 'service_delete' service.pk %}">Удалить</a></p>#}
+        {##}
+        {#                </div>#}
+        {#            </div>#}
+        {#        {% endfor %}#}
+        {#        <p></p>#}
+    </div>
+{% endblock content %}

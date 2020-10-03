@@ -2,14 +2,53 @@
 {% block title %}Список роботов{% endblock title %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        Hi {{ user.username }}! You was born at {{ user.birthday }}
-        Your position is {{ user.position }}
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
-    {% else %}
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a>
-    {% endif %}
+    {#    {% if user.is_authenticated %}#}
+    {#        Hi {{ user.username }}! You was born at {{ user.birthday }}#}
+    {#        Your position is {{ user.position }}#}
+    {#        <p><a href="{% url 'logout' %}">Log Out</a></p>#}
+    {#    {% else %}#}
+    {#        <p>You are not logged in</p>#}
+    {#        <a href="{% url 'login' %}">Log In</a>#}
+    {#    {% endif %}#}
+
+    <div class="container-fluid">
+        <table class="table table-robot-list table-sort">
+            <thead class="thead-default">
+            <tr>
+                <th>Имя</th>
+                <th>Серийный номер</th>
+                <th>Модель</th>
+                <th>Клиент</th>
+                <th>Инетгратор</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for robot in object_list %}
+                <tr>
+                    <th><a href="{% url 'robot_read' robot.pk %}">{{ robot.name }}</a></th>
+                    <th>{{ robot.serial_number }}</th>
+                    <th>{{ robot.model_id }}</th>
+                    <th>{{ robot.client_id }}</th>
+                    <th>
+                        {% if robot.sh_id != None %}
+                            {{ robot.sh_id }}
+                        {% endif %}
+                    </th>
+{#                    <th><a href="{% url 'robot_Update' robot.pk %}"><img#}
+{#                            src="{% static "img/actions/icon-changelink.svg" %}"#}
+{#                            style="min-width: 24px; align-self: center" ;/>#}
+{#                        <!-- Изменить--></a> | <a#}
+{#                            href="{% url 'robot_Delete' robot.pk %}"><img#}
+{#                            src="{% static "img/actions/icon-delete.svg" %}"#}
+{#                            style="min-width: 24px" ;/><!-- Удалить--></a>#}
+                    <th>+++ | +++</th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     <a href="{% url 'arm_create' %}">arm</a>
     <a href="{% url 'backup_create' %}">backup</a>
     <a href="{% url 'client_create' %}">client</a>
