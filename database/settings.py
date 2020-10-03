@@ -120,8 +120,8 @@ USE_L10N = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join('static'),)
-#STATIC_ROOT = os.path.join('static')
+#STATICFILES_DIRS = (os.path.join('static'),)
+STATIC_ROOT = os.path.join('static')
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIAFILES_DIRS = (os.path.join('media'),)
