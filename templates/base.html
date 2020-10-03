@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static  'robots/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static  'contrib/css/jquery.datetimepicker.min.css' %}">
 
-    <title>{% block title %}Database{% endblock title %}</title>
+    <!-- Optional JavaScript -->
+    <script src="{% static 'robots/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'robots/js/popper.min.js' %}"></script>
+    <script src="{% static 'robots/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'contrib/js/jquery.datetimepicker.full.js' %}"></script>
+
+    <title>{% block title %}База данных{% endblock title %}</title>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img src="{% static "robots/img/robowizard_logo.svg" %}"></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "robots/img/robowizard_logo.svg" %}"></a>
         <form class="form-inline">
             {% if user.is_authenticated %}
                 <button class="btn btn-default" type="button" onclick="location.href = '{% url 'logout' %}'"><img
@@ -31,9 +38,5 @@
 </div>
 </body>
 
-    <!-- Optional JavaScript -->
-    <script src="{% static 'robots/js/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'robots/js/popper.min.js' %}"></script>
-    <script src="{% static 'robots/js/bootstrap.min.js' %}"></script>
 
 </html>

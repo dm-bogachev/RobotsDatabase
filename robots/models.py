@@ -4,6 +4,7 @@ from  django.forms import SelectDateWidget
 
 
 class Robot(models.Model):
+
     name = models.CharField(
         max_length=255,
         verbose_name='Имя',
@@ -57,14 +58,12 @@ class Robot(models.Model):
         null=True,
         blank=True,
     )
-    #
-    # backup_id = models.ForeignKey(
-    #     'Backup',
-    #     on_delete=models.CASCADE,
-    #     verbose_name='Бэкап',
-    #     null=True,
-    #     blank=True,
-    # )
+
+    main_backup_file = models.FileField(
+        verbose_name='Бэкап',
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return self.name

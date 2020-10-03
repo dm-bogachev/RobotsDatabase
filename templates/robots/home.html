@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
-
-{% block title %}Home{% endblock title %}
+{% block title %}Список роботов{% endblock title %}
 
 {% block content %}
     {% if user.is_authenticated %}
@@ -11,4 +10,13 @@
         <p>You are not logged in</p>
         <a href="{% url 'login' %}">Log In</a>
     {% endif %}
+    <a href="{% url 'arm_create' %}">arm</a>
+    <a href="{% url 'backup_create' %}">backup</a>
+    <a href="{% url 'client_create' %}">client</a>
+    <a href="{% url 'controller_create' %}">controller</a>
+    <a href="{% url 'integrator_create' %}">integrator</a>
+    <a href="{% url 'location_create' %}">location</a>
+    <a href="{% url 'robot_create' %}">robot</a>
+    <a href="{% url 'service_create' %}">service</a>
+
 {% endblock content %}
