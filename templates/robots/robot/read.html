@@ -51,19 +51,5 @@
                 </div>
             </div>
         {% endfor %}
-        {#        <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=object.pk %}">Добавить</a></h1>#}
-        {#        {% for service in object.service_set.all %}#}
-        {#            <div class="jumbotron jumbotron-fluid">#}
-        {#                <div class="container">#}
-        {#                    <h1 class="display-4">{{ service.date }}</h1>#}
-        {#                    <p class="lead">Описание: {{ service.description }}</p>#}
-        {#                    <br>#}
-        {#                    <p class="lead"><a href="{% url 'service_detail' service.pk %}">Информация</a> | <a#}
-        {#                            href="{% url 'service_delete' service.pk %}">Удалить</a></p>#}
-        {##}
-        {#                </div>#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-        {#        <p></p>#}
     </div>
 {% endblock content %}
