@@ -121,10 +121,7 @@ STATICFILES_DIRS = (os.path.join('static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-#MEDIAFILES_DIRS = (os.path.join('media'),)
-
 AUTH_USER_MODEL = 'users.RobowizardEmployee'
-
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LANGUAGE_CODE = 'ru-RU'

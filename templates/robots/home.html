@@ -1,19 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Список роботов{% endblock title %}
-
 {% block content %}
-    {#    {% if user.is_authenticated %}#}
-    {#        Hi {{ user.username }}! You was born at {{ user.birthday }}#}
-    {#        Your position is {{ user.position }}#}
-    {#        <p><a href="{% url 'logout' %}">Log Out</a></p>#}
-    {#    {% else %}#}
-    {#        <p>You are not logged in</p>#}
-    {#        <a href="{% url 'login' %}">Log In</a>#}
-    {#    {% endif %}#}
-
     <div class="container-fluid">
-        <table class="table table-robot-list table-sort">
+        <input class="form-control" type="text" placeholder="Поиск" id="search-text" onkeyup="tableSearch()">
+        <table id="info-table" class="table table-robot-list table-sort">
             <thead class="thead-default">
             <tr>
                 <th>Имя</th>
@@ -36,13 +27,6 @@
                             {{ robot.sh_id }}
                         {% endif %}
                     </th>
-{#                    <th><a href="{% url 'robot_Update' robot.pk %}"><img#}
-{#                            src="{% static "img/actions/icon-changelink.svg" %}"#}
-{#                            style="min-width: 24px; align-self: center" ;/>#}
-{#                        <!-- Изменить--></a> | <a#}
-{#                            href="{% url 'robot_Delete' robot.pk %}"><img#}
-{#                            src="{% static "img/actions/icon-delete.svg" %}"#}
-{#                            style="min-width: 24px" ;/><!-- Удалить--></a>#}
                     <th>
                         <a href="{% url 'robot_update' robot.pk %}">Редактировать</a> |
                         <a href="{% url 'robot_delete' robot.pk %}">Удалить</a>
@@ -63,3 +47,4 @@
     <a href="{% url 'service_create' %}">service</a>
 
 {% endblock content %}
+
