@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}Robot list{% endblock title %}
-
 {% block content %}
     <div class="container-fluid">
         <table class="button-forms">
             <tr>
                 <td>
                     <form class="pt-1" action="{% url 'home' %}" target="_self">
-                        <button style="font-size: large;" class="btn btn btn-primary">Назад</button>
+                        <button style="font-size: large;" class="btn btn-primary">Назад</button>
                     </form>
                 </td>
                 <td>
                     <form class="pt-1" action="{% url 'robot_update' robot.pk %}" target="_self">
-                        <button style="font-size: large;" class="btn btn btn-success">Изменить</button>
+                        <button style="font-size: large;" class="btn btn-success">Изменить</button>
                     </form>
                 </td>
                 <td>
                     <form class="pt-1" action="{% url 'robot_delete' robot.pk %}" target="_self">
-                        <button style="font-size: large;" class="btn btn btn-danger">Удалить</button>
+                        <button style="font-size: large;" class="btn btn-danger">Удалить</button>
                     </form>
                 </td>
             </tr>

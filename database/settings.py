@@ -21,10 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')rb#*bebot2twx_m&%@*4jdy2e@0xptw69^f&*y_e6czg)_a$$'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -120,11 +116,12 @@ USE_L10N = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = (os.path.join('static'),)
-STATIC_ROOT = os.path.join('static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (os.path.join('static'),)
+
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIAFILES_DIRS = (os.path.join('media'),)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+#MEDIAFILES_DIRS = (os.path.join('media'),)
 
 AUTH_USER_MODEL = 'users.RobowizardEmployee'
 
@@ -137,3 +134,6 @@ TIME_ZONE = 'Europe/Moscow'
 DATE_INPUT_FORMATS = ('%d.%m.%Y',)
 USE_TZ = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True

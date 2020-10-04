@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Список роботов{% endblock title %}
 
 {% block content %}
@@ -42,7 +43,10 @@
 {#                            href="{% url 'robot_Delete' robot.pk %}"><img#}
 {#                            src="{% static "img/actions/icon-delete.svg" %}"#}
 {#                            style="min-width: 24px" ;/><!-- Удалить--></a>#}
-                    <th>+++ | +++</th>
+                    <th>
+                        <a href="{% url 'robot_update' robot.pk %}">Редактировать</a> |
+                        <a href="{% url 'robot_delete' robot.pk %}">Удалить</a>
+                    </th>
                 </tr>
             {% endfor %}
             </tbody>
