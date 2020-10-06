@@ -63,6 +63,7 @@ class Robot(models.Model):
         verbose_name='Бэкап',
         null=True,
         blank=True,
+        upload_to='backups/'
     )
 
     def __str__(self):

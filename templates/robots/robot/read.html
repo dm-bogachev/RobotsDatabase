@@ -48,6 +48,7 @@
                 <div class="container">
                     <h1 class="display-4">{{ service.date }}</h1>
                     <p class="lead">Описание: {{ service.description }}</p>
+                    <p class="lead"><a href="{% url 'home' %}/{{ service.report }}">Отчёт</a> </p>
                 </div>
             </div>
         {% endfor %}
