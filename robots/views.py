@@ -34,6 +34,28 @@ class BackupCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('home')
 
+    def form_invalid(self, form):
+        return super(BackupCreateView, self).form_invalid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        self.file = request.FILES.pop('file', None)
+        if isinstance(self.file, list) and len(self.file) > 0:
+            self.file = self.file[0]
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        upload_to = form.instance.file.field.upload_to
+        save_folder = settings.MEDIA_ROOT + upload_to
+        new_filename = upload_to.replace('s/', '_') + str(len(os.listdir(save_folder))).zfill(3)
+        if self.file:
+            with open((save_folder + new_filename), 'wb+') as f:
+                for chunk in self.file.chunks():
+                    f.write(chunk)
+        #
+        form.instance.file = upload_to + new_filename
+        form.save()
+        return super(BackupCreateView, self).form_valid(form)
+
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
@@ -125,7 +147,6 @@ class RobotCreateView(LoginRequiredMixin, CreateView):
             with open((save_folder + new_filename), 'wb+') as f:
                 for chunk in self.main_backup_file.chunks():
                     f.write(chunk)
-        #
         form.instance.main_backup_file = upload_to + new_filename
         form.save()
         return super(RobotCreateView, self).form_valid(form)
@@ -200,3 +221,24 @@ class ServiceCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('home')
+
+    def form_invalid(self, form):
+        return super(ServiceCreateView, self).form_invalid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        self.report = request.FILES.pop('report', None)
+        if isinstance(self.report, list) and len(self.report) > 0:
+            self.report = self.report[0]
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        upload_to = form.instance.report.field.upload_to
+        save_folder = settings.MEDIA_ROOT + upload_to
+        new_filename = upload_to.replace('s/', '_') + str(len(os.listdir(save_folder))).zfill(3)
+        if self.report:
+            with open((save_folder + new_filename), 'wb+') as f:
+                for chunk in self.report.chunks():
+                    f.write(chunk)
+        form.instance.report = upload_to + new_filename
+        form.save()
+        return super(ServiceCreateView, self).form_valid(form)
