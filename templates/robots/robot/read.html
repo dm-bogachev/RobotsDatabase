@@ -42,6 +42,19 @@
             </tr>
             </tbody>
         </table>
+
+    <p>{{ object.id }}</p>
+    <p>{{ object.name }}</p>
+    <p>{{ object.serial_number }}</p>
+    <p>{{ object.description }}</p>
+    <p>{{ object.shipping_date }}</p>
+    <p>{{ object.creation_date }}</p>
+    <p>{{ object.controller_id }}</p>
+    <p>{{ object.model_id }}</p>
+    <p>{{ object.client_id }}</p>
+    <p>{{ object.integrator_id }}</p>
+    <p><a href="{% url 'home' %}media/{{ object.main_backup_file }}">{{ object.main_backup_file }}</a></p>
+
         <h1>Обслуживания: <a style="font-size: 18pt;" href="#">Добавить</a></h1>
         {% for service in object.service_set.all %}
             <div class="jumbotron">

@@ -25,6 +25,10 @@ class Robot(models.Model):
         blank=True,
         verbose_name='Дата поставки', )
 
+    creation_date = models.DateField(
+        auto_now=True,
+    )
+
     controller_id = models.ForeignKey(
         'Controller',
         on_delete=models.CASCADE,
@@ -51,13 +55,13 @@ class Robot(models.Model):
         blank=True,
     )
 
-    # Временно чарфилд, потом будет файл
-    main_backup = models.CharField(
-        max_length=512,
-        verbose_name='Путь к бэкапу',
-        null=True,
-        blank=True,
-    )
+    # # Временно чарфилд, потом будет файл
+    # main_backup = models.CharField(
+    #     max_length=512,
+    #     verbose_name='Путь к бэкапу',
+    #     null=True,
+    #     blank=True,
+    # )
 
     main_backup_file = models.FileField(
         verbose_name='Бэкап',
@@ -151,14 +155,14 @@ class Backup(models.Model):
     file = models.FileField(
         verbose_name='Файл',
         upload_to='backups/',
-        # Временно, пока не обеспечу загрузку файлов
-        blank=True,
-        null=True,
+        # # Временно, пока не обеспечу загрузку файлов
+        # blank=True,
+        # null=True,
     )
-    file_path = models.CharField(
-        max_length=1024,
-        verbose_name='Путь к файлу'
-    )
+    # file_path = models.CharField(
+    #     max_length=1024,
+    #     verbose_name='Путь к файлу'
+    # )
     service_id = models.ForeignKey(
         'Service',
         on_delete=models.DO_NOTHING
@@ -183,12 +187,12 @@ class Service(models.Model):
         upload_to='reports/',
         verbose_name='Отчёт',
     )
-    report_path = models.CharField(
-        max_length=512,
-        null=True,
-        blank=True,
-        verbose_name='Путь к файлу'
-    )
+    # report_path = models.CharField(
+    #     max_length=512,
+    #     null=True,
+    #     blank=True,
+    #     verbose_name='Путь к файлу'
+    # )
     description = models.TextField(
         verbose_name='Описание',
     )
