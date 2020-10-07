@@ -151,7 +151,7 @@ fieldset.collapsed .collapse-toggle {
 /* MONOSPACE TEXTAREAS */
 
 fieldset.monospace textarea {
-    font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 
 /* SUBMIT ROW */
@@ -352,23 +352,23 @@ body.popup .submit-row {
 }
 
 .nested-inline {
-	margin: 5px;
+    margin: 5px;
 }
 
 td > .nested-inline {
-	margin: 0px;
+    margin: 0px;
 }
 
 .nested-inline-bottom-border {
-	border-bottom: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
 }
 
 .no-bottom-border.row1 > td {
-	border-bottom: solid #EDF3FE 1px;
+    border-bottom: solid #EDF3FE 1px;
 }
 
 .no-bottom-border.row2 > td {
-	border-bottom: solid white 1px;
+    border-bottom: solid white 1px;
 }
 
 .empty-form {

@@ -1,9 +1,11 @@
 import os
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.views.generic import *
+
 from database import settings
 from robots.models import *
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BackupCreateView(LoginRequiredMixin, CreateView):
@@ -37,4 +39,3 @@ class BackupCreateView(LoginRequiredMixin, CreateView):
             form.instance.file = upload_to + new_filename
         form.save()
         return super(BackupCreateView, self).form_valid(form)
-

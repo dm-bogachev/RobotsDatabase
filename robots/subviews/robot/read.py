@@ -1,7 +1,8 @@
-from django.views.generic import DetailView
-from robots.models import *
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import DetailView
+
+from robots.models import *
 
 
 class RobotReadView(LoginRequiredMixin, DetailView):
@@ -28,4 +29,3 @@ class RobotReadView(LoginRequiredMixin, DetailView):
 
     def get_success_url(self):
         return reverse_lazy('home')
-

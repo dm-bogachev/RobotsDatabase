@@ -1,7 +1,8 @@
-from django.views.generic import DeleteView
-from robots.models import Backup
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
+
+from robots.models import Backup
 
 
 class BackupDeleteView(LoginRequiredMixin, DeleteView):
@@ -11,4 +12,3 @@ class BackupDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('home')
-

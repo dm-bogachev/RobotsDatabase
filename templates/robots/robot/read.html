@@ -43,26 +43,27 @@
             </tbody>
         </table>
 
-    <p>id: {{ object.id }}</p>
-    <p>Имя робота: {{ object.name }}</p>
-    <p>Серийный номер: {{ object.serial_number }}</p>
-    <p>Описание: {{ object.description }}</p>
-    <p>Дата поставки: {{ object.shipping_date }}</p>
-    <p>Дата создания объекта в базе: {{ object.creation_date }}</p>
-    <p>Контроллер: {{ object.controller_id }}</p>
-    <p>Модель: {{ object.model_id }}</p>
-    <p>Клиент: {{ object.client_id }}</p>
-    <p>Интегратор: {{ object.integrator_id }}</p>
-    <p><a href="{% url 'home' %}media/{{ object.main_backup_file }}">{{ object.main_backup_file }}</a></p>
+        <p style="font-size: large;">id: {{ object.id }}</p>
+        <p style="font-size: large;">Имя робота: {{ object.name }}</p>
+        <p style="font-size: large;">Серийный номер: {{ object.serial_number }}</p>
+        <p style="font-size: large;">Описание: {{ object.description }}</p>
+        <p style="font-size: large;">Дата поставки: {{ object.shipping_date }}</p>
+        <p style="font-size: large;">Дата создания объекта в базе: {{ object.creation_date }}</p>
+        <p style="font-size: large;">Контроллер: {{ object.controller_id }}</p>
+        <p style="font-size: large;">Модель: {{ object.model_id }}</p>
+        <p style="font-size: large;">Клиент: {{ object.client_id }}</p>
+        <p style="font-size: large;">Интегратор: {{ object.integrator_id }}</p>
+        <p style="font-size: large;"><a
+                href="{% url 'home' %}media/{{ object.main_backup_file }}">{{ object.main_backup_file }}</a></p>
 
-        <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=robot.pk%}">Добавить</a></h1>
+        <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=robot.pk %}">Добавить</a></h1>
         {% for service in object.service_set.all %}
             <div class="jumbotron">
                 <div class="container">
                     <h1 class="display-4">{{ service.date }}</h1>
                     <p class="lead">Описание: {{ service.description }}</p>
                     {% if service.report %}
-                    <p class="lead"><a href="{% url 'home' %}media/{{ service.report }}">Отчёт</a> </p>
+                        <p class="lead"><a href="{% url 'home' %}media/{{ service.report }}">Отчёт</a></p>
                     {% endif %}
                 </div>
             </div>

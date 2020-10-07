@@ -1,10 +1,7 @@
 from django.db import models
-from django.utils import timezone
-from  django.forms import SelectDateWidget
 
 
 class Robot(models.Model):
-
     name = models.CharField(
         max_length=255,
         verbose_name='Имя',
@@ -220,4 +217,3 @@ class Service(models.Model):
             return str(-delta.days) + ' дней назад'
         else:
             return 'Запланировано на ' + self.date + ' (через ' + -delta.days + ' дней'
-

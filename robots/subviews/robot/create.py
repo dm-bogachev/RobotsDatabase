@@ -1,9 +1,11 @@
 import os
-from django.views.generic import CreateView
-from robots.models import *
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from robots.models import *
 
 
 class RobotCreateView(LoginRequiredMixin, CreateView):

@@ -14,12 +14,12 @@
  * Licensed under the New BSD License
  * See: http://www.opensource.org/licenses/bsd-license.php
  */
-(function($) {
-    $.fn.formset = function(opts) {
+(function ($) {
+    $.fn.formset = function (opts) {
         var options = $.extend({}, $.fn.formset.defaults, opts);
         var $this = $(this);
         var $parent = $this.parent();
-        var updateElementIndex = function(el, prefix, ndx) {
+        var updateElementIndex = function (el, prefix, ndx) {
             var id_regex = new RegExp("(" + prefix + "-(\\d+|__prefix__))");
             var replacement = prefix + "-" + ndx;
             if ($(el).attr("for")) {
@@ -34,7 +34,7 @@
         };
         var nextIndex = get_no_forms(options.prefix);
         // Add form classes for dynamic behaviour
-        $this.each(function(i) {
+        $this.each(function (i) {
             $(this).not("." + options.emptyCssClass).addClass(options.formCssClass);
         });
         // Only show the add button if we are allowed to add more items,
@@ -53,7 +53,7 @@
                 $this.filter(":last").after('<div class="' + options.addCssClass + '"><a href="javascript:void(0)">' + options.addText + "</a></div>");
                 addButton = $this.filter(":last").next().find("a");
             }
-            addButton.click(function(e) {
+            addButton.click(function (e) {
                 e.preventDefault();
                 var nextIndex = get_no_forms(options.prefix);
                 var template = $("#" + options.prefix + "-empty");
@@ -72,7 +72,7 @@
                     // last child element of the form's container:
                     row.children(":first").append('<span><a class="' + options.deleteCssClass + '" href="javascript:void(0)">' + options.deleteText + "</a></span>");
                 }
-                row.find("*").each(function() {
+                row.find("*").each(function () {
                     updateElementIndex(this, options.prefix, nextIndex);
                 });
                 // when adding something from a cloned formset the id is the same
@@ -86,7 +86,7 @@
                     addButton.parent().hide();
                 }
                 // The delete button of each row triggers a bunch of other things
-                row.find("a." + options.deleteCssClass).click(function(e) {
+                row.find("a." + options.deleteCssClass).click(function (e) {
                     e.preventDefault();
                     // Find the row that will be deleted by this button
                     var row = $(this).parents("." + options.formCssClass);
@@ -110,21 +110,21 @@
                     if (nested_formsets.length) {
                         row.addClass("no-bottom-border");
                     }
-                    nested_formsets.each(function() {
+                    nested_formsets.each(function () {
                         if (!$(this).next()) {
                             border_class = "";
                         } else {
                             border_class = " no-bottom-border";
                         }
                         ($('<tr class="nested-inline-row' + border_class + '">').html(($('<td>', {
-                            colspan : '100%'
+                            colspan: '100%'
                         }).html($(this))))).insertBefore($(template));
                     });
                 } else {
                     // stacked
                     // Insert the nested formsets into the new form
                     nested_formsets = create_nested_formset(options.prefix, nextIndex, options, true);
-                    nested_formsets.each(function() {
+                    nested_formsets.each(function () {
                         row.append($(this));
                     });
                 }
@@ -139,56 +139,57 @@
     };
     /* Setup plugin defaults */
     $.fn.formset.defaults = {
-        prefix : "form", // The form prefix for your django formset
-        addText : "add another", // Text for the add link
-        deleteText : "remove", // Text for the delete link
-        addCssClass : "add-row", // CSS class applied to the add link
-        deleteCssClass : "delete-row", // CSS class applied to the delete link
-        emptyCssClass : "empty-row", // CSS class applied to the empty row
-        formCssClass : "dynamic-form", // CSS class applied to each form in a formset
-        added : null, // Function called each time a new form is added
-        removed : null // Function called each time a form is deleted
+        prefix: "form", // The form prefix for your django formset
+        addText: "add another", // Text for the add link
+        deleteText: "remove", // Text for the delete link
+        addCssClass: "add-row", // CSS class applied to the add link
+        deleteCssClass: "delete-row", // CSS class applied to the delete link
+        emptyCssClass: "empty-row", // CSS class applied to the empty row
+        formCssClass: "dynamic-form", // CSS class applied to each form in a formset
+        added: null, // Function called each time a new form is added
+        removed: null // Function called each time a form is deleted
     };
     // Tabular inlines ---------------------------------------------------------
-    $.fn.tabularFormset = function(options) {
+    $.fn.tabularFormset = function (options) {
         var $rows = $(this);
-        var alternatingRows = function(row) {
+        var alternatingRows = function (row) {
             row_number = 0;
-            $($rows.selector).not(".add-row").removeClass("row1 row2").each(function() {
-                $(this).addClass('row' + ((row_number%2)+1));
+            $($rows.selector).not(".add-row").removeClass("row1 row2").each(function () {
+                $(this).addClass('row' + ((row_number % 2) + 1));
                 next = $(this).next();
                 while (next.hasClass('nested-inline-row')) {
-                    next.addClass('row' + ((row_number%2)+1));
+                    next.addClass('row' + ((row_number % 2) + 1));
                     next = next.next();
                 }
                 row_number = row_number + 1;
             });
         };
-        var reinitDateTimeShortCuts = function() {
+        var reinitDateTimeShortCuts = function () {
             // Reinitialize the calendar and clock widgets by force
-            if ( typeof DateTimeShortcuts != "undefined") {
+            if (typeof DateTimeShortcuts != "undefined") {
                 $(".datetimeshortcuts").remove();
                 DateTimeShortcuts.init();
             }
         };
-        var updateSelectFilter = function() {
+        var updateSelectFilter = function () {
             // If any SelectFilter widgets are a part of the new form,
             // instantiate a new SelectFilter instance for it.
-            if ( typeof SelectFilter != 'undefined') {
-                $('.selectfilter').each(function(index, value) {
+            if (typeof SelectFilter != 'undefined') {
+                $('.selectfilter').each(function (index, value) {
                     var namearr = value.name.split('-');
                     SelectFilter.init(value.id, namearr[namearr.length - 1], false, options.adminStaticPrefix);
                 });
-                $('.selectfilterstacked').each(function(index, value) {
+                $('.selectfilterstacked').each(function (index, value) {
                     var namearr = value.name.split('-');
                     SelectFilter.init(value.id, namearr[namearr.length - 1], true, options.adminStaticPrefix);
                 });
             }
         };
-        var initPrepopulatedFields = function(row) {
-            row.find('.prepopulated_field').each(function() {
-                var field = $(this), input = field.find('input, select, textarea'), dependency_list = input.data('dependency_list') || [], dependencies = [];
-                $.each(dependency_list, function(i, field_name) {
+        var initPrepopulatedFields = function (row) {
+            row.find('.prepopulated_field').each(function () {
+                var field = $(this), input = field.find('input, select, textarea'),
+                    dependency_list = input.data('dependency_list') || [], dependencies = [];
+                $.each(dependency_list, function (i, field_name) {
                     dependencies.push('#' + row.find('.field-' + field_name).find('input, select, textarea').attr('id'));
                 });
                 if (dependencies.length) {
@@ -198,14 +199,14 @@
         };
 
         $rows.formset({
-            prefix : options.prefix,
-            addText : options.addText,
-            formCssClass : "dynamic-" + options.prefix,
-            deleteCssClass : "inline-deletelink",
-            deleteText : options.deleteText,
-            emptyCssClass : "empty-form",
-            removed : alternatingRows,
-            added : function(row) {
+            prefix: options.prefix,
+            addText: options.addText,
+            formCssClass: "dynamic-" + options.prefix,
+            deleteCssClass: "inline-deletelink",
+            deleteText: options.deleteText,
+            emptyCssClass: "empty-form",
+            removed: alternatingRows,
+            added: function (row) {
                 initPrepopulatedFields(row);
                 reinitDateTimeShortCuts();
                 updateSelectFilter();
@@ -217,42 +218,43 @@
     };
 
     // Stacked inlines ---------------------------------------------------------
-    $.fn.stackedFormset = function(options) {
+    $.fn.stackedFormset = function (options) {
         var $rows = $(this);
 
-        var update_inline_labels = function(formset_to_update) {
-            formset_to_update.children('.inline-related').not('.empty-form').children('h3').find('.inline_label').each(function(i) {
+        var update_inline_labels = function (formset_to_update) {
+            formset_to_update.children('.inline-related').not('.empty-form').children('h3').find('.inline_label').each(function (i) {
                 var count = i + 1;
                 $(this).html($(this).html().replace(/(#\d+)/g, "#" + count));
             });
         };
 
-        var reinitDateTimeShortCuts = function() {
+        var reinitDateTimeShortCuts = function () {
             // Reinitialize the calendar and clock widgets by force, yuck.
-            if ( typeof DateTimeShortcuts != "undefined") {
+            if (typeof DateTimeShortcuts != "undefined") {
                 $(".datetimeshortcuts").remove();
                 DateTimeShortcuts.init();
             }
         };
 
-        var updateSelectFilter = function() {
+        var updateSelectFilter = function () {
             // If any SelectFilter widgets were added, instantiate a new instance.
-            if ( typeof SelectFilter != "undefined") {
-                $(".selectfilter").each(function(index, value) {
+            if (typeof SelectFilter != "undefined") {
+                $(".selectfilter").each(function (index, value) {
                     var namearr = value.name.split('-');
                     SelectFilter.init(value.id, namearr[namearr.length - 1], false, options.adminStaticPrefix);
                 });
-                $(".selectfilterstacked").each(function(index, value) {
+                $(".selectfilterstacked").each(function (index, value) {
                     var namearr = value.name.split('-');
                     SelectFilter.init(value.id, namearr[namearr.length - 1], true, options.adminStaticPrefix);
                 });
             }
         };
 
-        var initPrepopulatedFields = function(row) {
-            row.find('.prepopulated_field').each(function() {
-                var field = $(this), input = field.find('input, select, textarea'), dependency_list = input.data('dependency_list') || [], dependencies = [];
-                $.each(dependency_list, function(i, field_name) {
+        var initPrepopulatedFields = function (row) {
+            row.find('.prepopulated_field').each(function () {
+                var field = $(this), input = field.find('input, select, textarea'),
+                    dependency_list = input.data('dependency_list') || [], dependencies = [];
+                $.each(dependency_list, function (i, field_name) {
                     dependencies.push('#' + row.find('.form-row .field-' + field_name).find('input, select, textarea').attr('id'));
                 });
                 if (dependencies.length) {
@@ -262,14 +264,14 @@
         };
 
         $rows.formset({
-            prefix : options.prefix,
-            addText : options.addText,
-            formCssClass : "dynamic-" + options.prefix,
-            deleteCssClass : "inline-deletelink",
-            deleteText : options.deleteText,
-            emptyCssClass : "empty-form",
-            removed : update_inline_labels,
-            added : (function(row) {
+            prefix: options.prefix,
+            addText: options.addText,
+            formCssClass: "dynamic-" + options.prefix,
+            deleteCssClass: "inline-deletelink",
+            deleteText: options.deleteText,
+            emptyCssClass: "empty-form",
+            removed: update_inline_labels,
+            added: (function (row) {
                 initPrepopulatedFields(row);
                 reinitDateTimeShortCuts();
                 updateSelectFilter();
@@ -288,9 +290,9 @@
         // Check if the form should have nested formsets
         var nested_inlines = $('#' + normalized_parent_formset_prefix + "-group ." + normalized_parent_formset_prefix + "-0-nested-inline").not('.cloned');
         if (!nested_inlines.length) {
-          nested_inlines = $('#' + normalized_parent_formset_prefix + "-group ." + normalized_parent_formset_prefix + "-nested-inline").not('.cloned');
+            nested_inlines = $('#' + normalized_parent_formset_prefix + "-group ." + normalized_parent_formset_prefix + "-nested-inline").not('.cloned');
         }
-        nested_inlines.each(function(key, formsetToClone) {
+        nested_inlines.each(function (key, formsetToClone) {
             // prefixes for the nested formset
             var normalized_formset_prefix = $(this).attr('id').split('-group')[0];
             var formset_prefix = normalized_formset_prefix.replace(normalized_parent_formset_prefix + "-0", parent_formset_prefix + "-" + next_form_id);
@@ -324,10 +326,10 @@
                 var add_text = template.find('.add-row').text();
                 template.find('.add-row').remove();
                 template.find('.tabular.inline-related tbody tr.' + formset_prefix + '-not-nested').tabularFormset({
-                    prefix : formset_prefix,
-                    adminStaticPrefix : options.adminStaticPrefix,
-                    addText : add_text,
-                    deleteText : options.deleteText
+                    prefix: formset_prefix,
+                    adminStaticPrefix: options.adminStaticPrefix,
+                    addText: add_text,
+                    deleteText: options.deleteText
                 });
                 // Create the nested formset
                 var nested_formsets = create_nested_formset(formset_prefix, 0, options, false);
@@ -335,14 +337,14 @@
                     template.find(".form-row").addClass('no-bottom-border');
                 }
                 // Insert nested formsets
-                nested_formsets.each(function() {
+                nested_formsets.each(function () {
                     if (!$(this).next()) {
                         border_class = "";
                     } else {
                         border_class = " no-bottom-border";
                     }
                     template.find("#" + formset_prefix + "-empty").before(($('<tr class="nested-inline-row' + border_class + '">').html(($('<td>', {
-                        colspan : '100%'
+                        colspan: '100%'
                     }).html($(this))))));
                 });
             } else {
@@ -373,12 +375,12 @@
                 var add_text = template.find('.add-row').text();
                 template.find('.add-row').remove();
                 template.find(".inline-related").stackedFormset({
-                    prefix : formset_prefix,
-                    adminStaticPrefix : options.adminStaticPrefix,
-                    addText : add_text,
-                    deleteText : options.deleteText
+                    prefix: formset_prefix,
+                    adminStaticPrefix: options.adminStaticPrefix,
+                    addText: add_text,
+                    deleteText: options.deleteText
                 });
-                nested_formsets.each(function() {
+                nested_formsets.each(function () {
                     new_form.append($(this));
                 });
             }
@@ -397,7 +399,7 @@
     function update_props(template, normalized_formset_prefix, formset_prefix) {
         // Fix template id
         template.attr('id', template.attr('id').replace(normalized_formset_prefix, formset_prefix));
-        template.find('*').each(function() {
+        template.find('*').each(function () {
             if ($(this).attr("for")) {
                 $(this).attr("for", $(this).attr("for").replace(normalized_formset_prefix, formset_prefix));
             }
@@ -423,7 +425,7 @@
             // stacked
             prefix_fix.attr('id', prefix_fix.attr('id').replace('-empty', '-' + nextIndex));
         }
-        prefix_fix.find('*').each(function() {
+        prefix_fix.find('*').each(function () {
             if ($(this).attr("for")) {
                 $(this).attr("for", $(this).attr("for").replace('__prefix__', '0'));
             }
@@ -460,7 +462,7 @@
     // This return the maximum amount of forms in the given formset
     function get_max_forms(formset_prefix) {
         var max_forms = $("#id_" + formset_prefix + "-MAX_NUM_FORMS").attr("autocomplete", "off").val();
-        if ( typeof max_forms == 'undefined') {
+        if (typeof max_forms == 'undefined') {
             return '';
         }
         return parseInt(max_forms);

@@ -1,7 +1,8 @@
-from django.views.generic import *
-from robots.models import *
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import *
+
+from robots.models import *
 
 
 class LocationCreateView(LoginRequiredMixin, CreateView):
