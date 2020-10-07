@@ -1,12 +1,12 @@
 from django.views.generic import DeleteView
-from robots.models import Robot
+from robots.models import Location
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class RobotDeleteView(LoginRequiredMixin, DeleteView):
-    model = Robot
-    template_name = 'robots/robot/delete.html'
+class LocationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Location
+    template_name = 'robots/location/delete.html'
     login_url = 'login'
 
     def get_success_url(self):

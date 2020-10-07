@@ -55,13 +55,15 @@
     <p>{{ object.integrator_id }}</p>
     <p><a href="{% url 'home' %}media/{{ object.main_backup_file }}">{{ object.main_backup_file }}</a></p>
 
-        <h1>Обслуживания: <a style="font-size: 18pt;" href="#">Добавить</a></h1>
+        <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=robot.pk%}">Добавить</a></h1>
         {% for service in object.service_set.all %}
             <div class="jumbotron">
                 <div class="container">
                     <h1 class="display-4">{{ service.date }}</h1>
                     <p class="lead">Описание: {{ service.description }}</p>
+                    {% if service.report %}
                     <p class="lead"><a href="{% url 'home' %}media/{{ service.report }}">Отчёт</a> </p>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

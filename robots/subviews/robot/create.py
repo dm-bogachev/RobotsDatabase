@@ -1,5 +1,5 @@
 import os
-from django.views.generic import *
+from django.views.generic import CreateView
 from robots.models import *
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -45,9 +45,9 @@ class RobotCreateView(LoginRequiredMixin, CreateView):
         if self.main_backup_file:
             upload_to = form.instance.main_backup_file.field.upload_to
             save_folder = settings.MEDIA_ROOT + upload_to
-            new_filename = upload_to.replace('s/', '_') + str(len(os.listdir(save_folder))).zfill(3)
             filename, file_extension = os.path.splitext(self.main_backup_file.name)
-            with open((save_folder + new_filename + file_extension), 'wb+') as f:
+            new_filename = upload_to.replace('s/', '_') + str(len(os.listdir(save_folder))).zfill(3) + file_extension
+            with open((save_folder + new_filename), 'wb+') as f:
                 for chunk in self.main_backup_file.chunks():
                     f.write(chunk)
             form.instance.main_backup_file = upload_to + new_filename

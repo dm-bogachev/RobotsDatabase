@@ -31,27 +31,30 @@ class Robot(models.Model):
 
     controller_id = models.ForeignKey(
         'Controller',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         verbose_name='Контроллер',
     )
 
     model_id = models.ForeignKey(
         'Arm',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         verbose_name='Модель',
     )
 
     client_id = models.ForeignKey(
         'Client',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         verbose_name='Клиент',
     )
 
     integrator_id = models.ForeignKey(
         'Integrator',
-        on_delete=models.CASCADE,
-        verbose_name='Интегратор',
+        on_delete=models.SET_NULL,
         null=True,
+        verbose_name='Интегратор',
         blank=True,
     )
 
