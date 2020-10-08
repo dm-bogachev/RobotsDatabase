@@ -5,11 +5,58 @@
 {% block title %}Добавить робота{% endblock title %}
 {% block content %}
     <div class="container">
-        <h1 class="pt-2">Добавить робота</h1>
-        <form enctype="multipart/form-data" method="POST">
+        <h1>Добавить робота</h1><br>
+        <form method="post">
             {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-success" type="submit">Создать</button>
+            <div class="row">
+                <div class="name col-md-8">{{ form.name|as_crispy_field }}</div>
+                <div class="col-md-4">{{ form.serial_number|as_crispy_field }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">{{ form.description|as_crispy_field }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">{{ form.controller_id|as_crispy_field }}</div>
+                        <div class="col-md-6"><a href="{% url 'controller_create' %}">+ Добавить</a></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">{{ form.model_id|as_crispy_field }}</div>
+                        <div class="col-md-6"><a href="{% url 'arm_create' %}">+ Добавить</a></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">{{ form.client_id|as_crispy_field }}</div>
+                        <div class="col-md-6"><a href="{% url 'client_create' %}">+ Добавить</a></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">{{ form.integrator_id|as_crispy_field }}</div>
+                        <div class="col-md-6"><a href="{% url 'integrator_create' %}">+ Добавить</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="description col-md-2">
+                    {{ form.shipping_date|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="description col-md-8">
+                    {{ form.main_backup_file|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="button col-md-12">
+                    <button type="submit" class="btn btn-primary" style="position: absolute; right: 10px">Создать
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
     <script>
