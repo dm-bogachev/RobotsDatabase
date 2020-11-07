@@ -15,7 +15,7 @@ class BackupCreateView(LoginRequiredMixin, CreateView):
     login_url = 'login'
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('robot_create')
 
     def form_invalid(self, form):
         return super(BackupCreateView, self).form_invalid(form)

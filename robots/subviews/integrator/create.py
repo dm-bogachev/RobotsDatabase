@@ -16,4 +16,4 @@ class IntegratorCreateView(LoginRequiredMixin, CreateView):
         return Location.objects.all()
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('robot_create')
