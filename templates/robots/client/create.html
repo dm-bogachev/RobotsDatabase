@@ -6,7 +6,7 @@
 {% block content %}
     <script src="{% static 'robots/js/update.js' %}"></script>
     <div class="container">
-        <h1>Добавить робота</h1><br>
+        <h1>Добавить клиента</h1><br>
         <form enctype="multipart/form-data" method="post" autocomplete="off">
             {% csrf_token %}
             <div class="row">
@@ -27,16 +27,3 @@
         </form>
     </div>
 {% endblock content %}
-{% comment %}
-
-{% block content %}
-    <div class="container col-3">
-        <h1 class="pt-2">Добавить клиента</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-success" type="submit">Создать</button>
-        </form>
-    </div>
-{% endblock content %}
-{% endcomment %}

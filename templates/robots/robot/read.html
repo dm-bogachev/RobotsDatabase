@@ -54,7 +54,7 @@
         <p style="font-size: large;">Клиент: {{ object.client_id }}</p>
         <p style="font-size: large;">Интегратор: {{ object.integrator_id }}</p>
         <p style="font-size: large;"><a
-                href="{% url 'home' %}media/{{ object.main_backup_file }}">{{ object.main_backup_file }}</a></p>
+                href="{% url 'home' %}media/{{ object.main_backup_file }}">Резервная копия</a></p>
 
         <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=robot.pk %}">Добавить</a></h1>
         {% for service in object.service_set.all %}

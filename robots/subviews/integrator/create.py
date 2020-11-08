@@ -8,7 +8,7 @@ from robots.models import *
 
 class IntegratorCreateView(LoginRequiredMixin, CreateView):
     model = Integrator
-    template_name = 'robots/client/create.html'
+    template_name = 'robots/integrator/create.html'
     fields = '__all__'
     login_url = 'login'
 
