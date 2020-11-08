@@ -14,6 +14,7 @@ class LocationCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('home')
+
     def form_valid(self, form):
         instance = form.save()
         return HttpResponse(

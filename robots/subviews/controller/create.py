@@ -14,6 +14,7 @@ class ControllerCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('robot_create')
+
     def form_valid(self, form):
         instance = form.save()
         return HttpResponse(
