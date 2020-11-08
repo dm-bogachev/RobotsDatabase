@@ -1,7 +1,33 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block title %}Добавить клиента{% endblock title %}
+{% block content %}
+    <script src="{% static 'robots/js/update.js' %}"></script>
+    <div class="container">
+        <h1>Добавить робота</h1><br>
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="name col-md-12">{{ form.name|as_crispy_field }}</div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-10">{{ form.location_id|as_crispy_field }}</div>
+                <div class="col-md-2"><a href="{% url 'location_create' %}" onclick="return showAddPopup(this);">+</a></div>
+            </div>
+            <div class="row">
+                <div class="button col-md-12">
+                    <button onclick=clearStorage() type="submit" class="btn btn-primary"
+                            style="position: absolute; right: 10px">Создать
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+{% comment %}
+
 {% block content %}
     <div class="container col-3">
         <h1 class="pt-2">Добавить клиента</h1>
@@ -12,3 +38,4 @@
         </form>
     </div>
 {% endblock content %}
+{% endcomment %}
