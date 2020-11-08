@@ -3,4 +3,5 @@
 /.idea/
 /*/.idea/
 *.pyc
-/media/
+/media/backups/*
+/media/reports/*
