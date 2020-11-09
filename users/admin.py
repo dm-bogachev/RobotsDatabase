@@ -13,7 +13,7 @@ class RobowizardEmployeeAdmin(UserAdmin):
     list_display = ['username', 'email', 'first_name', 'last_name', 'mid_name', 'position', 'birthday']
     fieldsets = (
         (None,
-         {'fields': ('username', 'first_name', 'last_name', 'mid_name', 'email', 'position', 'birthday')}),
+         {'fields': ('username', 'password', 'first_name', 'last_name', 'mid_name', 'email', 'position', 'birthday')}),
         ('Статус админа', {'fields': ('is_staff',)}),
     )
     add_fieldsets = (
