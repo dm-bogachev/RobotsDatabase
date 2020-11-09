@@ -47,7 +47,8 @@
         {#        <p style="font-size: large;">id: {{ object.id }}</p>#}
         <p><h5>Имя робота: {{ object.name }}</h5></p>
         <p><h5>Серийный номер: {{ object.serial_number }}</h5></p>
-        <h5>Описание: {{ object.description }}</h5>
+        <div align="justify" style="word-wrap: normal;"><h5>Описание:<br/><div class="text-muted">{{ object.description }}</div> </h5></div>
+
         <p><h5>Дата поставки: {{ object.shipping_date }}</h5></p>
         <p><h5>Дата создания объекта в базе: {{ object.creation_date }}</h5></p>
         <p><h5>Контроллер: {{ object.controller_id }}</h5></p>
