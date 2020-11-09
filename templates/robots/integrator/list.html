@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Модели{% endblock title %}
+{% block content %}
+    <div class="container">
+        <table id="info-table" class="table table-robot-list table-sort">
+            <thead class="thead-default">
+            <tr>
+                <th style="font-size: large">Интеграторы:</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for integrator in object_list %}
+                <tr>
+                    <th>{{ integrator }}</th>
+                    <th>
+                        <a href="{% url 'arm_delete' integrator.pk %}">Удалить</a>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+
+

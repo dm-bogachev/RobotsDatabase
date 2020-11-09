@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Robot list{% endblock title %}
 {% block content %}
-    <div class="container-fluid">
+    <div class="container" style="-moz-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto;">
         <table class="button-forms">
             <tr>
                 <td>
@@ -21,7 +22,7 @@
                 </td>
             </tr>
         </table>
-        <h1 class="pt-1">Информация о роботе:</h1>
+        {% comment %}<h1 class="pt-1">Информация о роботе:</h1>
         <table class="table" style="font-size: large;">
             <thead class="thead-default">
             <tr>
@@ -41,23 +42,41 @@
                 <th>{{ object.controller_id }}</th>
             </tr>
             </tbody>
-        </table>
+        </table>{% endcomment %}
 
-        <p style="font-size: large;">id: {{ object.id }}</p>
-        <p style="font-size: large;">Имя робота: {{ object.name }}</p>
-        <p style="font-size: large;">Серийный номер: {{ object.serial_number }}</p>
-        <p style="font-size: large;">Описание: {{ object.description }}</p>
-        <p style="font-size: large;">Дата поставки: {{ object.shipping_date }}</p>
-        <p style="font-size: large;">Дата создания объекта в базе: {{ object.creation_date }}</p>
-        <p style="font-size: large;">Контроллер: {{ object.controller_id }}</p>
-        <p style="font-size: large;">Модель: {{ object.model_id }}</p>
-        <p style="font-size: large;">Клиент: {{ object.client_id }}</p>
-        <p style="font-size: large;">Интегратор: {{ object.integrator_id }}</p>
+        {#        <p style="font-size: large;">id: {{ object.id }}</p>#}
+        <p><h5>Имя робота: {{ object.name }}</h5></p>
+        <p><h5>Серийный номер: {{ object.serial_number }}</h5></p>
+        <h5>Описание: {{ object.description }}</h5>
+        <p><h5>Дата поставки: {{ object.shipping_date }}</h5></p>
+        <p><h5>Дата создания объекта в базе: {{ object.creation_date }}</h5></p>
+        <p><h5>Контроллер: {{ object.controller_id }}</h5></p>
+        <p><h5>Модель: {{ object.model_id }}</h5></p>
+        <p><h5>Клиент: {{ object.client_id }}</h5></p>
+        <p><h5>Интегратор: {{ object.integrator_id }}</h5></p>
         <p style="font-size: large;"><a
-                href="{% url 'home' %}media/{{ object.main_backup_file }}">Резервная копия</a></p>
+                href="{% url 'home' %}media/{{ object.main_backup_file }}">Основная резервная копия</a></p>
 
         <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=robot.pk %}">Добавить</a></h1>
         {% for service in object.service_set.all %}
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">{{ service.date }}</span> &middot;
+                    <span class="text-muted"> {{ service.days_from_service }}</span>
+                </div>
+                <div class="card-body">
+                    {{ service.description }}
+                    {% if service.report %}
+                        <p class="lead"><a href="{% url 'home' %}media/{{ service.report }}">Отчёт</a></p>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-center text-muted">
+                    <a href="{% url 'service_update' service.pk %}">Изменить</a> | <a href="{% url 'service_delete' service.pk %}">Удалить</a>
+                </div>
+            </div>
+            <br/>
+        {% endfor %}
+        {% comment %}{% for service in object.service_set.all %}
             <div class="jumbotron">
                 <div class="container">
                     <h1 class="display-4">{{ service.date }}</h1>
@@ -67,6 +86,6 @@
                     {% endif %}
                 </div>
             </div>
-        {% endfor %}
+        {% endfor %}{% endcomment %}
     </div>
 {% endblock content %}

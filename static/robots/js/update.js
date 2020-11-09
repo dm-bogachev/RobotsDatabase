@@ -19,7 +19,10 @@ function closePopup(win, newID, newRepr, id) {
     window.location.reload();
     win.close();
 }
-
+function closeDeletePopup(win) {
+    window.location.reload();
+    win.close();
+}
 function clearStorage() {
     sessionStorage.clear();
 }

@@ -40,15 +40,13 @@
             {% endfor %}
             </tbody>
         </table>
+    <hr><hr><hr>
+        <h2>Удаление лишних моделей (если случайно были созданы с опечаткой)</h2>
+        <h4><a href="{% url 'arm_list' %}">Модели роботов</a></h4>
+        <h4><a href="{% url 'controller_list' %}">Контроллеры</a></h4>
+        <h4><a href="{% url 'client_list' %}">Клиенты</a></h4>
+        <h4><a href="{% url 'integrator_list' %}">Интеграторы</a></h4>
+        <h4><a href="{% url 'location_list' %}">Локации</a></h4>
     </div>
-    <p>
-        <a href="{% url 'arm_create' %}">arm</a>
-        <a href="{% url 'backup_create' %}">backup</a>
-        <a href="{% url 'client_create' %}">client</a>
-        <a href="{% url 'controller_create' %}">controller</a>
-        <a href="{% url 'integrator_create' %}">integrator</a>
-        <a href="{% url 'location_create' %}">location</a>
-        <a href="{% url 'robot_create' %}">robot</a>
-    </p>
 {% endblock content %}
 

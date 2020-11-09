@@ -209,11 +209,11 @@ class Service(models.Model):
     @property
     def days_from_service(self):
         from datetime import datetime
-        date_format = "%d.%m.%Y"
+        date_format = "%Y-%m-%d"
         a = datetime.strptime(str(datetime.now().date()), date_format)
         b = datetime.strptime(str(self.date), date_format)
         delta = b - a
-        if delta < 0:
+        if delta.days < 0:
             return str(-delta.days) + ' дней назад'
         else:
-            return 'Запланировано на ' + self.date + ' (через ' + -delta.days + ' дней'
+            return 'Запланировано на ' + str(self.date.strftime("%d.%m.%Y")) + ' (через ' + str(delta.days) + ' дня(ей))'
