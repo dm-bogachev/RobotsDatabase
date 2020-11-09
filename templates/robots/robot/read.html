@@ -47,7 +47,11 @@
         {#        <p style="font-size: large;">id: {{ object.id }}</p>#}
         <p><h5>Имя робота: {{ object.name }}</h5></p>
         <p><h5>Серийный номер: {{ object.serial_number }}</h5></p>
-        <div align="justify" style="word-wrap: normal;"><h5>Описание:<br/><div class="text-muted">{{ object.description }}</div> </h5></div>
+        <div align="justify" style="word-wrap: normal;">
+            <h5>Описание:<br/>
+                <div class="text-muted">{{ object.description }}</div>
+            </h5>
+        </div>
 
         <p><h5>Дата поставки: {{ object.shipping_date }}</h5></p>
         <p><h5>Дата создания объекта в базе: {{ object.creation_date }}</h5></p>
@@ -55,8 +59,11 @@
         <p><h5>Модель: {{ object.model_id }}</h5></p>
         <p><h5>Клиент: {{ object.client_id }}</h5></p>
         <p><h5>Интегратор: {{ object.integrator_id }}</h5></p>
-        <p style="font-size: large;"><a
-                href="{% url 'home' %}media/{{ object.main_backup_file }}">Основная резервная копия</a></p>
+        {% if object.main_backup_file %}
+            <p style="font-size: large;"><a
+                    href="{% url 'home' %}media/{{ object.main_backup_file }}">Основная резервная копия</a></p>
+        {% endif %}
+
 
         <h1>Обслуживания: <a style="font-size: 18pt;" href="{% url 'service_create' pk=robot.pk %}">Добавить</a></h1>
         {% for service in object.service_set.all %}
@@ -72,7 +79,8 @@
                     {% endif %}
                 </div>
                 <div class="card-footer text-center text-muted">
-                    <a href="{% url 'service_update' service.pk %}">Изменить</a> | <a href="{% url 'service_delete' service.pk %}">Удалить</a>
+                    <a href="{% url 'service_update' service.pk %}">Изменить</a> | <a
+                        href="{% url 'service_delete' service.pk %}">Удалить</a>
                 </div>
             </div>
             <br/>
