@@ -15,6 +15,8 @@ class Robot(models.Model):
 
     description = models.TextField(
         verbose_name='Описание',
+        blank=True,
+        null=True,
     )
 
     shipping_date = models.DateField(
@@ -54,14 +56,6 @@ class Robot(models.Model):
         verbose_name='Интегратор',
         blank=True,
     )
-
-    # # Временно чарфилд, потом будет файл
-    # main_backup = models.CharField(
-    #     max_length=512,
-    #     verbose_name='Путь к бэкапу',
-    #     null=True,
-    #     blank=True,
-    # )
 
     main_backup_file = models.FileField(
         verbose_name='Бэкап',
@@ -159,10 +153,7 @@ class Backup(models.Model):
         # blank=True,
         # null=True,
     )
-    # file_path = models.CharField(
-    #     max_length=1024,
-    #     verbose_name='Путь к файлу'
-    # )
+
     service_id = models.ForeignKey(
         'Service',
         on_delete=models.DO_NOTHING
@@ -187,12 +178,7 @@ class Service(models.Model):
         upload_to='reports/',
         verbose_name='Отчёт',
     )
-    # report_path = models.CharField(
-    #     max_length=512,
-    #     null=True,
-    #     blank=True,
-    #     verbose_name='Путь к файлу'
-    # )
+
     description = models.TextField(
         verbose_name='Описание',
     )
@@ -217,3 +203,4 @@ class Service(models.Model):
             return str(-delta.days) + ' дней назад'
         else:
             return 'Запланировано на ' + str(self.date.strftime("%d.%m.%Y")) + ' (через ' + str(delta.days) + ' дня(ей))'
+

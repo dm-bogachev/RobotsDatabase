@@ -36,15 +36,3 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 });
-
-/*$(window).on("blur focus", function (e) {
-    var prevType = $(this).data("prevType");
-
-    if (prevType != e.type) {   //  reduce double fire issues
-        switch (e.type) {
-            case "focus":
-                window.location.reload();
-        }
-    }
-    $(this).data("prevType", e.type);
-})*/

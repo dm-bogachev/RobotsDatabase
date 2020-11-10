@@ -16,7 +16,7 @@
                 <th>Серийный номер</th>
                 <th>Модель</th>
                 <th>Клиент</th>
-                <th>Инетгратор</th>
+                <th>Интегратор</th>
                 <th></th>
             </tr>
             </thead>
@@ -28,8 +28,8 @@
                     <th>{{ robot.model_id }}</th>
                     <th>{{ robot.client_id }}</th>
                     <th>
-                        {% if robot.sh_id != None %}
-                            {{ robot.sh_id }}
+                        {% if robot.integrator_id != None %}
+                            {{ robot.integrator_id }}
                         {% endif %}
                     </th>
                     <th>
@@ -40,7 +40,9 @@
             {% endfor %}
             </tbody>
         </table>
-    <hr><hr><hr>
+        <hr>
+        <hr>
+        <hr>
         <h2>Удаление лишних моделей (если случайно были созданы с опечаткой)</h2>
         <h4><a href="{% url 'arm_list' %}">Модели роботов</a></h4>
         <h4><a href="{% url 'controller_list' %}">Контроллеры</a></h4>
@@ -48,5 +50,11 @@
         <h4><a href="{% url 'integrator_list' %}">Интеграторы</a></h4>
         <h4><a href="{% url 'location_list' %}">Локации</a></h4>
     </div>
+    <script>
+        window.onload = function ()
+        {
+            sessionStorage.clear();
+        };
+    </script>
 {% endblock content %}
 

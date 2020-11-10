@@ -85,16 +85,5 @@
             </div>
             <br/>
         {% endfor %}
-        {% comment %}{% for service in object.service_set.all %}
-            <div class="jumbotron">
-                <div class="container">
-                    <h1 class="display-4">{{ service.date }}</h1>
-                    <p class="lead">Описание: {{ service.description }}</p>
-                    {% if service.report %}
-                        <p class="lead"><a href="{% url 'home' %}media/{{ service.report }}">Отчёт</a></p>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}{% endcomment %}
     </div>
 {% endblock content %}
