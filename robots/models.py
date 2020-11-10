@@ -1,7 +1,11 @@
 from django.db import models
+from django.db.models.signals import post_delete, post_save
+
+from changelog.mixins import ChangeloggableMixin
+from changelog.signals import journal_save_handler, journal_delete_handler
 
 
-class Robot(models.Model):
+class Robot(ChangeloggableMixin, models.Model):
     name = models.CharField(
         max_length=255,
         verbose_name='Имя',
@@ -68,7 +72,7 @@ class Robot(models.Model):
         return self.name
 
 
-class Arm(models.Model):
+class Arm(ChangeloggableMixin, models.Model):
     name = models.CharField(
         max_length=32,
         unique=True,
@@ -79,7 +83,7 @@ class Arm(models.Model):
         return self.name
 
 
-class Controller(models.Model):
+class Controller(ChangeloggableMixin, models.Model):
     name = models.CharField(
         max_length=32,
         unique=True,
@@ -90,7 +94,7 @@ class Controller(models.Model):
         return self.name
 
 
-class Client(models.Model):
+class Client(ChangeloggableMixin, models.Model):
     name = models.CharField(
         max_length=255,
         verbose_name="Клиент",
@@ -110,7 +114,7 @@ class Client(models.Model):
 
 
 # Интегратор
-class Integrator(models.Model):
+class Integrator(ChangeloggableMixin, models.Model):
     name = models.CharField(
         max_length=255,
         verbose_name="Интегратор",
@@ -129,7 +133,7 @@ class Integrator(models.Model):
         return self.name
 
 
-class Location(models.Model):
+class Location(ChangeloggableMixin, models.Model):
     country = models.CharField(
         max_length=255,
         verbose_name='Страна',
@@ -145,7 +149,7 @@ class Location(models.Model):
         return self.country + "/" + self.city
 
 
-class Backup(models.Model):
+class Backup(ChangeloggableMixin, models.Model):
     file = models.FileField(
         verbose_name='Файл',
         upload_to='backups/',
@@ -168,7 +172,7 @@ class Backup(models.Model):
         return "Backup" + str(self.id)
 
 
-class Service(models.Model):
+class Service(ChangeloggableMixin, models.Model):
     date = models.DateField(
         verbose_name='Дата',
     )
@@ -204,3 +208,28 @@ class Service(models.Model):
         else:
             return 'Запланировано на ' + str(self.date.strftime("%d.%m.%Y")) + ' (через ' + str(
                 delta.days) + ' дня(ей))'
+
+post_save.connect(journal_save_handler, sender=Robot)
+post_delete.connect(journal_delete_handler, sender=Robot)
+
+#
+post_save.connect(journal_save_handler, sender=Arm)
+post_delete.connect(journal_delete_handler, sender=Arm)
+#
+post_save.connect(journal_save_handler, sender=Backup)
+post_delete.connect(journal_delete_handler, sender=Backup)
+#
+post_save.connect(journal_save_handler, sender=Client)
+post_delete.connect(journal_delete_handler, sender=Client)
+#
+post_save.connect(journal_save_handler, sender=Controller)
+post_delete.connect(journal_delete_handler, sender=Controller)
+#
+post_save.connect(journal_save_handler, sender=Integrator)
+post_delete.connect(journal_delete_handler, sender=Integrator)
+#
+post_save.connect(journal_save_handler, sender=Location)
+post_delete.connect(journal_delete_handler, sender=Location)
+#
+post_save.connect(journal_save_handler, sender=Service)
+post_delete.connect(journal_delete_handler, sender=Service)

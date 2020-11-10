@@ -5,9 +5,7 @@
 {% block content %}
     <script src="{% static 'robots/js/update.js' %}"></script>
     <div class="container">
-        <form action="{% url 'arm_create' %}" target="_self">
-            <button style="font-size: large;" class="btn btn-success">Добавить</button>
-        </form>
+        <h3><a href="{% url 'arm_create' %} " onclick="return showAddPopup(this);">Добавить</a></h3>
         <table id="info-table" class="table table-robot-list table-sort">
             <thead class="thead-default">
             <tr>

@@ -53,6 +53,5 @@ class RobotUpdateView(LoginRequiredMixin, UpdateView):
                 for chunk in self.main_backup_file.chunks():
                     f.write(chunk)
             form.instance.main_backup_file = upload_to + new_filename
-
         form.save()
         return super(RobotUpdateView, self).form_valid(form)

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # Locals
     'users',
     'robots',
+    'changelog',
 
     # 3rd Party
     'crispy_forms',
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'changelog.middleware.LoggedInUserMiddleware',
 ]
 
 ROOT_URLCONF = 'database.urls'
