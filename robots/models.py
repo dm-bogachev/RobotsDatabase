@@ -202,5 +202,5 @@ class Service(models.Model):
         if delta.days < 0:
             return str(-delta.days) + ' дней назад'
         else:
-            return 'Запланировано на ' + str(self.date.strftime("%d.%m.%Y")) + ' (через ' + str(delta.days) + ' дня(ей))'
-
+            return 'Запланировано на ' + str(self.date.strftime("%d.%m.%Y")) + ' (через ' + str(
+                delta.days) + ' дня(ей))'

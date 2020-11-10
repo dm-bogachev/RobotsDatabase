@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView
 
@@ -15,5 +14,4 @@ class ServiceDeleteView(LoginRequiredMixin, DeleteView):
         pk = self.kwargs.get('pk', None)
         robot = Robot.objects.get(service=pk)
         return reverse_lazy('robot_read', kwargs={'pk': robot.pk})
-        #return reverse_lazy('home')
-
+        # return reverse_lazy('home')
