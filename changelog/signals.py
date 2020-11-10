@@ -2,13 +2,13 @@ import datetime
 import json
 import time
 
-from django.db.models.signals import post_save
-
 from changelog.middleware import LoggedInUser
 from changelog.mixins import ChangeloggableMixin
 from changelog.models import ChangeLog, ACTION_CREATE, ACTION_UPDATE, ACTION_DELETE
 
 _count = []
+
+
 def journal_save_handler(sender, instance, created, **kwargs):
     if isinstance(instance, ChangeloggableMixin):
         _count.append(1)

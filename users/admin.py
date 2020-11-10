@@ -10,18 +10,23 @@ RobowizardEmployee = get_user_model()
 class RobowizardEmployeeAdmin(UserAdmin):
     add_form = UserCreationForm
     form = UserChangeForm
-    list_display = ['username', 'email', 'first_name', 'last_name', 'mid_name', 'position', 'birthday']
+    list_display = ['username', 'email', 'first_name', 'last_name', 'mid_name', 'position', 'birthday', 'is_staff',
+                    'is_active']
     fieldsets = (
-        (None,
-         {'fields': ('username', 'password', 'first_name', 'last_name', 'mid_name', 'email', 'position', 'birthday')}),
-        ('Статус админа', {'fields': ('is_staff',)}),
+        ('Сведения',
+         {'fields': (
+         'username', 'password', 'first_name', 'last_name', 'mid_name', 'email', 'position', 'birthday',)},),
+        # 'is_staff')},),
+        ('Разрешения',
+         {'fields': ('permission_administration', 'permission_accounting', 'permission_service', 'permission_sales',)})
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': ('username', 'password1', 'password2', 'first_name', 'last_name', 'mid_name', 'email', 'position',
-                       'birthday', 'is_staff')}
-         ),
+                       'birthday',)},),  # 'is_staff')}),
+        ('Разрешения',
+         {'fields': ('permission_administration', 'permission_accounting', 'permission_service', 'permission_sales',)}),
     )
 
 

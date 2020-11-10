@@ -2,8 +2,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# from django.contrib.m.fields import JSONField
-
 ACTION_CREATE = 'create'
 ACTION_UPDATE = 'update'
 ACTION_DELETE = 'delete'
@@ -25,7 +23,7 @@ class ChangeLog(models.Model):
     action_on_model = models.CharField(
         choices=TYPE_ACTION_ON_MODEL, max_length=50, verbose_name=u'Действие', null=True)
     # data = JSONField(verbose_name=u'Изменяемые данные модели', default=dict)
-    data = models.TextField()
+    data = models.TextField(verbose_name=u'Изменяемые данные модели')
     ipaddress = models.CharField(max_length=15, verbose_name=u'IP адресс', null=True)
 
     class Meta:

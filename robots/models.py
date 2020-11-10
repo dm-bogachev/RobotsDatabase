@@ -209,6 +209,7 @@ class Service(ChangeloggableMixin, models.Model):
             return 'Запланировано на ' + str(self.date.strftime("%d.%m.%Y")) + ' (через ' + str(
                 delta.days) + ' дня(ей))'
 
+
 post_save.connect(journal_save_handler, sender=Robot)
 post_delete.connect(journal_delete_handler, sender=Robot)
 
