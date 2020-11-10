@@ -3,7 +3,11 @@
 {% load static %}
 {% block title %}Модели{% endblock title %}
 {% block content %}
+    <script src="{% static 'robots/js/update.js' %}"></script>
     <div class="container">
+        <form action="{% url 'client_create' %}" target="_self">
+            <button style="font-size: large;" class="btn btn-success">Добавить</button>
+        </form>
         <table id="info-table" class="table table-robot-list table-sort">
             <thead class="thead-default">
             <tr>
@@ -16,7 +20,8 @@
                 <tr>
                     <th>{{ client }}</th>
                     <th>
-                        <a href="{% url 'client_delete' client.pk %}">Удалить</a>
+                        <a href="{% url 'client_update' client.pk %} " onclick="return showAddPopup(this);">Изменить</a>
+                        | <a href="{% url 'client_delete' client.pk %}" onclick="return showAddPopup(this);">Удалить</a>
                     </th>
                 </tr>
             {% endfor %}

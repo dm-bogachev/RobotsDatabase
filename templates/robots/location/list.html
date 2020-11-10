@@ -3,7 +3,11 @@
 {% load static %}
 {% block title %}Модели{% endblock title %}
 {% block content %}
+    <script src="{% static 'robots/js/update.js' %}"></script>
     <div class="container">
+        <form action="{% url 'location_create' %}" target="_self">
+            <button style="font-size: large;" class="btn btn-success">Добавить</button>
+        </form>
         <table id="info-table" class="table table-robot-list table-sort">
             <thead class="thead-default">
             <tr>
@@ -16,7 +20,10 @@
                 <tr>
                     <th>{{ location }}</th>
                     <th>
-                        <a href="{% url 'location_delete' location.pk %}">Удалить</a>
+                        <a href="{% url 'location_update' location.pk %} "
+                           onclick="return showAddPopup(this);">Изменить</a> | <a
+                            href="{% url 'location_delete' location.pk %}"
+                            onclick="return showAddPopup(this);">Удалить</a>
                     </th>
                 </tr>
             {% endfor %}

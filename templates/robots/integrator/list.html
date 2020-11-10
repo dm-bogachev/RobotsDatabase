@@ -3,7 +3,11 @@
 {% load static %}
 {% block title %}Модели{% endblock title %}
 {% block content %}
+    <script src="{% static 'robots/js/update.js' %}"></script>
     <div class="container">
+        <form action="{% url 'integrator_create' %}" target="_self">
+            <button style="font-size: large;" class="btn btn-success">Добавить</button>
+        </form>
         <table id="info-table" class="table table-robot-list table-sort">
             <thead class="thead-default">
             <tr>
@@ -16,7 +20,8 @@
                 <tr>
                     <th>{{ integrator }}</th>
                     <th>
-                        <a href="{% url 'integrator_delete' integrator.pk %}">Удалить</a>
+                        <a href="{% url 'integrator_update' integrator.pk %} " onclick="return showAddPopup(this);">Изменить</a>
+                        | <a href="{% url 'integrator_delete' integrator.pk %}" onclick="return showAddPopup(this);">Удалить</a>
                     </th>
                 </tr>
             {% endfor %}

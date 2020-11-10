@@ -34,7 +34,7 @@ class ServiceUpdateView(LoginRequiredMixin, UpdateView):
         pk = self.kwargs.get('pk', None)
         robot = Robot.objects.get(service=pk)
         return reverse_lazy('robot_read', kwargs={'pk': robot.pk})
-        #return reverse_lazy('home')
+        # return reverse_lazy('home')
 
     def form_invalid(self, form):
         return super(ServiceUpdateView, self).form_invalid(form)

@@ -43,7 +43,7 @@
         <hr>
         <hr>
         <hr>
-        <h2>Удаление лишних моделей (если случайно были созданы с опечаткой)</h2>
+        <h2>Редактирование моделей</h2>
         <h4><a href="{% url 'arm_list' %}">Модели роботов</a></h4>
         <h4><a href="{% url 'controller_list' %}">Контроллеры</a></h4>
         <h4><a href="{% url 'client_list' %}">Клиенты</a></h4>
@@ -51,8 +51,7 @@
         <h4><a href="{% url 'location_list' %}">Локации</a></h4>
     </div>
     <script>
-        window.onload = function ()
-        {
+        window.onload = function () {
             sessionStorage.clear();
         };
     </script>

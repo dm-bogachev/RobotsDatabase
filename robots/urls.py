@@ -5,6 +5,7 @@ from .views import *
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('arm/create', ArmCreateView.as_view(), name='arm_create'),
+    path('arm/update/<int:pk>', ArmUpdateView.as_view(), name='arm_update'),
     path('arm/delete/<int:pk>', ArmDeleteView.as_view(), name='arm_delete'),
     path('arm/list/', ArmListView.as_view(), name='arm_list'),
     #
@@ -12,18 +13,22 @@ urlpatterns = [
     path('backup/delete/<int:pk>', BackupDeleteView.as_view(), name='backup_delete'),
     #
     path('client/create', ClientCreateView.as_view(), name='client_create'),
+    path('client/update/<int:pk>', ClientUpdateView.as_view(), name='client_update'),
     path('client/delete/<int:pk>', ClientDeleteView.as_view(), name='client_delete'),
     path('client/list/', ClientListView.as_view(), name='client_list'),
     #
     path('controller/create', ControllerCreateView.as_view(), name='controller_create'),
+    path('controller/update/<int:pk>', ControllerUpdateView.as_view(), name='controller_update'),
     path('controller/delete/<int:pk>', ControllerDeleteView.as_view(), name='controller_delete'),
     path('controller/list/', ControllerListView.as_view(), name='controller_list'),
     #
     path('integrator/create', IntegratorCreateView.as_view(), name='integrator_create'),
+    path('integrator/update/<int:pk>', IntegratorUpdateView.as_view(), name='integrator_update'),
     path('integrator/delete/<int:pk>', IntegratorDeleteView.as_view(), name='integrator_delete'),
     path('integrator/list/', IntegratorListView.as_view(), name='integrator_list'),
     #
     path('location/create', LocationCreateView.as_view(), name='location_create'),
+    path('location/update/<int:pk>', LocationUpdateView.as_view(), name='location_update'),
     path('location/delete/<int:pk>', LocationDeleteView.as_view(), name='location_delete'),
     path('location/list/', LocationListView.as_view(), name='location_list'),
     #
