@@ -19,32 +19,32 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="row align-items-center">
-                        <div class="col-md-10">{{ form.controller_id|as_crispy_field }}</div>
-                        <div class="col-md-2"><a href="{% url 'controller_create' %}"
-                                                 onclick="return showAddPopup(this);">Добавить</a></div>
+                        <div class="col-md-8">{{ form.controller_id|as_crispy_field }}</div>
+                        <div class="col-md-4"><a href="{% url 'controller_create' %}"
+                                                 onclick="return showAddPopup(this);">Новый контроллер</a></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row align-items-center">
-                        <div class="col-md-10">{{ form.model_id|as_crispy_field }}</div>
-                        <div class="col-md-2"><a href="{% url 'arm_create' %}" onclick="return showAddPopup(this);">Добавить</a>
+                        <div class="col-md-8">{{ form.model_id|as_crispy_field }}</div>
+                        <div class="col-md-4"><a href="{% url 'arm_create' %}" onclick="return showAddPopup(this);">Новая модель</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row align-items-center">
-                        <div class="col-md-10">{{ form.client_id|as_crispy_field }}</div>
+                        <div class="col-md-8">{{ form.client_id|as_crispy_field }}</div>
                         {% comment %}<a href="{% url 'client_create' %}" id="add_author"
                            onclick="return showAddPopup(this);">+++++</a>{% endcomment %}
-                        <div class="col-md-2"><a href="{% url 'client_create' %}" onclick="return showAddPopup(this);">Добавить</a>
+                        <div class="col-md-4"><a href="{% url 'client_create' %}" onclick="return showAddPopup(this);">Новый клиент</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row align-items-center">
-                        <div class="col-md-10">{{ form.integrator_id|as_crispy_field }}</div>
-                        <div class="col-md-2"><a href="{% url 'integrator_create' %}"
-                                                 onclick="return showAddPopup(this);">Добавить</a></div>
+                        <div class="col-md-8">{{ form.integrator_id|as_crispy_field }}</div>
+                        <div  class="col-md-4"><a href="{% url 'integrator_create' %}"
+                                                 onclick="return showAddPopup(this);">Новый интегратор</a></div>
                     </div>
                 </div>
             </div>

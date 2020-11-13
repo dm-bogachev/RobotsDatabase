@@ -2,10 +2,12 @@
 {% load static %}
 {% block title %}Роботы{% endblock title %}
 {% block content %}
+    <script src="{% static 'robots/js/update.js' %}"></script>
     <div class="container-fluid">
-        <form action="{% url 'robot_create' %}" target="_self">
-            <button style="font-size: large;" class="btn btn-success">Добавить</button>
-        </form>
+{#        <form action="{% url 'robot_create' %}" target="_self">#}
+{#            <button style="font-size: large;" class="btn btn-success">Добавить робота</button>#}
+{#        </form>#}
+        <h3><a href="{% url 'robot_create' %} " {% comment %}onclick="return showAddPopup(this);"{% endcomment %}>Добавить робота</a></h3>
         <div class="pt-4">
             <input class="form-control" type="text" placeholder="Поиск" id="search-text" onkeyup="tableSearch()">
         </div>
