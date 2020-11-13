@@ -25,6 +25,9 @@
         <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "robots/img/robowizard_logo.svg" %}"></a>
         <form class="form-inline">
             {% if user.is_authenticated %}
+                {% if user.permission_administration %}
+                    <a href="{% url 'log' %}">Логи</a>
+                {% endif %}
                 <button class="btn btn-default" type="button" onclick="location.href = '{% url 'logout' %}'"><img
                         src="{% static "robots/img/icons/logout.svg" %}" width="30"></button>
             {% else %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Лог{% endblock title %}
+{% block content %}
+    <h1>Изменения</h1>
+{#    {%  for log in object_list.reverse %}#}
+{#        <p>{{ log.changed }}</p>#}
+{#    {%  endfor %}#}
+    <table id="info-table" class="table table-robot-list table-sort">
+            <thead class="thead-default">
+            <tr>
+                <th style="width: 230px">Дата</th>
+                <th style="width: 75px">Автор</th>
+                <th style="width: 75px">Модель</th>
+                <th style="width: 75px">Тип</th>
+                <th>Изменения</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for log in object_list.reverse %}
+                <tr>
+                    <th>{{ log.changed }}</th>
+                    <th>{{ log.user }}</th>
+                    <th>{{ log.model }}</th>
+                    <th>{{ log.action_on_model }}</th>
+                    {% if log.action_on_model == "delete" %}
+                        <th>Удален id:{{ log.record_id }}</th>
+                    {% else %}
+                        <th>{{ log.data }}</th>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock content %}
