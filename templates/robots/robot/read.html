@@ -45,20 +45,19 @@
         </table>{% endcomment %}
 
         {#        <p style="font-size: large;">id: {{ object.id }}</p>#}
-        <p><h5>Имя робота: {{ object.name }}</h5></p>
-        <p><h5>Серийный номер: {{ object.serial_number }}</h5></p>
-        <div align="justify" style="word-wrap: normal;">
-            <h5>Описание:<br/>
-                <div class="text-muted">{{ object.description }}</div>
-            </h5>
+        <h5>Имя робота: {{ object.name }}</h5>
+        <h5>Серийный номер: {{ object.serial_number }}</h5>
+        <div style="word-wrap: normal;">
+            <h5 >Описание:<br/></h5>
+            <div class="text-muted">{{ object.description }}</div>
         </div>
 
-        <p><h5>Дата поставки: {{ object.shipping_date }}</h5></p>
-        <p><h5>Дата создания объекта в базе: {{ object.creation_date }}</h5></p>
-        <p><h5>Контроллер: {{ object.controller_id }}</h5></p>
-        <p><h5>Модель: {{ object.model_id }}</h5></p>
-        <p><h5>Клиент: {{ object.client_id }}</h5></p>
-        <p><h5>Интегратор: {{ object.integrator_id }}</h5></p>
+        <h5>Дата поставки: {{ object.shipping_date }}</h5>
+        <h5>Дата создания объекта в базе: {{ object.creation_date }}</h5>
+        <h5>Контроллер: {{ object.controller_id }}</h5>
+        <h5>Модель: {{ object.model_id }}</h5>
+        <h5>Клиент: {{ object.client_id }}</h5>
+        <h5>Интегратор: {{ object.integrator_id }}</h5>
         {% if object.main_backup_file %}
             <p style="font-size: large;"><a
                     href="{% url 'home' %}media/{{ object.main_backup_file }}">Основная резервная копия</a></p>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load my_filters %}
+{% block title %}Табель{% endblock title %}
+{% block content %}
+    {% for workingday in workingday_list %}
+        {% if request.user.id == workingday.employee_id %}
+            <h3>{{ workingday.date }}</h3>
+            <h3>{{ workingday.employee_id }}</h3>
+            <h3>Visits</h3>
+            {% for workingdaypart in view.all_workingdayparts %}
+                {% if workingdaypart.workingday_id_id == workingday.pk %}
+                    <p>{{ workingdaypart }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+
+    <table class="table">
+        <thead class="thead-default">
+        <tr>
+            <th style="width: 130px">Дата:</th>
+            <th style="text-align: center; vertical-align: middle;" colspan="{{ view.all_workingdayparts|length }}">Время</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for workingday in workingday_list %}
+            <tr>
+                <th>{{ workingday.date }}</th>
+                {% for workingdaypart in view.all_workingdayparts %}
+                    {% if workingdaypart.workingday_id_id == workingday.pk %}
+
+                        <th colspan="{{ workingday.get_workingdayparts | length}}" style="text-align: center; vertical-align: middle;">{{ workingdaypart }}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}
+
+
+<table id="info-table" class="table table-robot-list table-sort">
+    <thead class="thead-default">
+    <tr>
+
+        {% for i in 48|get_range %}
+            <th>{{ i }}</th>
+        {% endfor %}
+    </tr>
+    <tr>
+        <th>{{ workingday.date }}</th>
+        {% for i in 47|get_range %}
+            <th>+</th>
+        {% endfor %}
+    </tr>
+    </thead>
+</table>

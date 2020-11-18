@@ -16,6 +16,12 @@ class WorkingDay(models.Model):
     def __str__(self):
         return self.date.strftime("%Y-%m-%d")
 
+    def get_workingdayparts(self):
+        return WorkingDayPart.objects.filter(workingday_id=self.id)
+
+    # def all_workingdayparts(self):
+    #     return WorkingDayPart.objects.all()
+
 
 class WorkingDayPart(models.Model):
     workingday_id = models.ForeignKey(WorkingDay, on_delete=models.DO_NOTHING, verbose_name='Дата')

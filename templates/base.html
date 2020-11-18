@@ -26,7 +26,9 @@
         <form class="form-inline">
             {% if user.is_authenticated %}
                 {% if user.permission_administration %}
+                    <a href="{% url 'staff_list' %}">AAAAAAAAAAAAAA</a>
                     <a href="{% url 'log' %}">Логи</a>
+
                 {% endif %}
                 <button class="btn btn-default" type="button" onclick="location.href = '{% url 'logout' %}'"><img
                         src="{% static "robots/img/icons/logout.svg" %}" width="30"></button>
