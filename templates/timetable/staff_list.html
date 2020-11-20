@@ -28,11 +28,14 @@
         {% for workingday in workingday_list %}
             <tr>
                 <th>{{ workingday.date }}</th>
-                {% for workingdaypart in view.all_workingdayparts %}
-                    {% if workingdaypart.workingday_id_id == workingday.pk %}
-
-                        <th colspan="{{ workingday.get_workingdayparts | length}}" style="text-align: center; vertical-align: middle;">{{ workingdaypart }}</th>
-                    {% endif %}
+                {% for workingdaypart in workingday.get_workingdayparts %}
+                    <td>{{ workingdaypart }}</td>
+                    {% comment %}{% if workingdaypart.workingday_id_id == workingday.pk %}
+                        <td>
+                         {{ workingdaypart }}
+                         {{ view.current_workingdayparts }}
+                        </td>
+                    {% endif %}{% endcomment %}
                 {% endfor %}
             </tr>
         {% endfor %}

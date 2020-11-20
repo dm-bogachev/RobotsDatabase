@@ -19,6 +19,18 @@ class WorkingDay(models.Model):
     def get_workingdayparts(self):
         return WorkingDayPart.objects.filter(workingday_id=self.id)
 
+    @property
+    def get_number_of_workingdayparts(self):
+        return WorkingDayPart.objects.filter(workingday_id_id=self.id)
+
+    @property
+    def get_maxworkingdaypartsnumber(self):
+        max = 0
+        for obj in WorkingDayPart.objects.filter(workingday_id_id=self.id):
+            if len(obj) > max:
+                max = len(obj)
+        return  max
+
     # def all_workingdayparts(self):
     #     return WorkingDayPart.objects.all()
 

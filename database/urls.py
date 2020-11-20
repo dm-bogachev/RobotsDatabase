@@ -18,12 +18,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
+from django.conf import settings
+import os
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('users/', include('django.contrib.auth.urls')),
                   path('home/', include('robots.urls')),
+                  path('', include('robots.urls')),
                   path('changelogs/', include('changelog.urls')),
                   path('timetable/', include('timetable.urls')),
-                  path('', lambda request: redirect('home/', permanent=True)),
+                  #path('', lambda request: redirect('home/', permanent=True)),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

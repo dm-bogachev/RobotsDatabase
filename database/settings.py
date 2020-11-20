@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'robowizard_database',
-        'USER': 'bogax',
-        'PASSWORD': 'qazqaz111',
+        'USER': 'robowizard',
+        'PASSWORD': 'RoB_Db1_',
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
 
 USE_L10N = False
 
