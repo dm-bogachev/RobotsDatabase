@@ -3,31 +3,30 @@
 {% block title %}Табель{% endblock title %}
 {% block content %}
     {% for workingday in workingday_list %}
-    {% if request.user.id == workingday.employee_id %}
-        <h3>{{ workingday.date }}</h3>
-        <h3>{{ workingday.employee_id }}</h3>
-        <h3>Visits</h3>
-        {% for workingdaypart in view.all_workingdayparts %}
-            {% if workingdaypart.workingday_id_id == workingday.pk %}
-                <p>{{ workingdaypart }}</p>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-{% endfor %}
-
+        {% if request.user.id == workingday.employee_id %}
+            <h3>{{ workingday.date }}</h3>
+            <h3>{{ workingday.employee_id }}</h3>
+            <h3>Visits</h3>
+            {% for workingdaypart in view.all_workingdayparts %}
+                {% if workingdaypart.workingday_id_id == workingday.pk %}
+                    <p>{{ workingdaypart }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
     <table id="info-table" class="table table-robot-list table-sort">
-            <thead class="thead-default">
-            <tr>
-                {% load my_filters %}
-                {% for i in 48|get_range %}
-                    <th>{{ i }}|get_time_by_id</th>
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for i in 24|get_range %}
-                    <th>+</th>
-                {% endfor %}
-            </tr>
-            </thead>
+        <thead class="thead-default">
+        <tr>
+            {% load my_filters %}
+            {% for i in 48|get_range %}
+                <th>{{ i }}|get_time_by_id</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for i in 24|get_range %}
+                <th>+</th>
+            {% endfor %}
+        </tr>
+        </thead>
     </table>
 {% endblock content %}

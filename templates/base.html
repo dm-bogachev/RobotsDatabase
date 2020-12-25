@@ -22,19 +22,18 @@
 <body>
 <header>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "robots/img/robowizard_logo.svg" %}"></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "robots/img/robowizard_logo.svg" %}" alt="Робовизард"></a>
         <form class="form-inline">
             {% if user.is_authenticated %}
                 {% if user.permission_administration %}
-                    <a href="{% url 'staff_list' %}">AAAAAAAAAAAAAA</a>
+{#                    <a href="{% url 'staff_list' %}">Тест</a>#}
                     <a href="{% url 'log' %}">Логи</a>
-
                 {% endif %}
                 <button class="btn btn-default" type="button" onclick="location.href = '{% url 'logout' %}'"><img
-                        src="{% static "robots/img/icons/logout.svg" %}" width="30"></button>
-            {% else %}
+                        src="{% static "robots/img/icons/logout.svg" %}" width="30" alt="Выход"></button>
+            {% comment %}{% else %}
                 <button class="btn btn-default" type="button" onclick="location.href = '{% url 'login' %}'"><img
-                        src="{% static "robots/img/icons/login.svg" %}" width="30"></button>
+                        src="{% static "robots/img/icons/login.svg" %}" width="30" alt="Вход"></button>{% endcomment %}
             {% endif %}
         </form>
     </nav>

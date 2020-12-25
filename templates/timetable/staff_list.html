@@ -15,8 +15,6 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
-
-
     <table class="table">
         <thead class="thead-default">
         <tr>
@@ -29,13 +27,6 @@
             <tr>
                 <th>{{ workingday.date }}</th>
                 {% for workingdaypart in workingday.get_workingdayparts %}
-                    <td>{{ workingdaypart }}</td>
-                    {% comment %}{% if workingdaypart.workingday_id_id == workingday.pk %}
-                        <td>
-                         {{ workingdaypart }}
-                         {{ view.current_workingdayparts }}
-                        </td>
-                    {% endif %}{% endcomment %}
                 {% endfor %}
             </tr>
         {% endfor %}
@@ -43,21 +34,3 @@
     </table>
 
 {% endblock content %}
-
-
-<table id="info-table" class="table table-robot-list table-sort">
-    <thead class="thead-default">
-    <tr>
-
-        {% for i in 48|get_range %}
-            <th>{{ i }}</th>
-        {% endfor %}
-    </tr>
-    <tr>
-        <th>{{ workingday.date }}</th>
-        {% for i in 47|get_range %}
-            <th>+</th>
-        {% endfor %}
-    </tr>
-    </thead>
-</table>
